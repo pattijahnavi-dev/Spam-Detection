@@ -40,8 +40,8 @@ textarea {
 # Load trained model
 @st.cache_resource
 def load_model():
-    with open("model/spam_model.pkl", "rb") as f:
-        return pickle.load(f)
+    with open("spam_model.pkl", "rb") as f:
+    return pickle.load(f)
 
 st.title("🛡️ Spam Detection System")
 st.write("Detect spam messages instantly using Machine Learning.")
