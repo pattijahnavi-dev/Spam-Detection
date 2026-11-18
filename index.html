@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spam Detection</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="badge">AI / ML PROJECT</div>
+            <h1>Spam Detection</h1>
+            <p class="subtitle">Enter a message and check whether it is spam or not.</p>
+
+            <form method="POST">
+                <label for="message">Enter your message</label>
+                <textarea id="message" name="message" placeholder="Example: Congratulations! You won a free prize..." required>{{ message }}</textarea>
+                <button type="submit">Detect Spam</button>
+            </form>
+
+            {% if result %}
+                <div class="result {% if result == 'SPAM' %}spam{% elif result == 'NOT SPAM' %}safe{% else %}warning{% endif %}">
+                    <div class="result-title">{{ result }}</div>
+                    {% if result == "SPAM" %}
+                        <p>This message looks suspicious and may be spam.</p>
+                    {% elif result == "NOT SPAM" %}
+                        <p>This message looks like a normal message.</p>
+                    {% else %}
+                        <p>{{ result }}</p>
+                    {% endif %}
+                </div>
+            {% endif %}
+        </div>
+
+        <div class="info">
+            <div>
+                <h3>How it works</h3>
+                <p>TF-IDF converts text into numerical features and Multinomial Naive Bayes classifies the message.</p>
+            </div>
+            <div>
+                <h3>Note</h3>
+                <p>This is a student project demonstration. Predictions are not guaranteed to be correct.</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
